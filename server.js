@@ -159,6 +159,16 @@ let avengers = [
       }
 ];
 
+server.get('/avengers', (req, res)=> {
+    res.status(200).json(avengers);
+});
+
+server.post('/avengers', (req, res)=> {
+    const avenger = {id: getNewId(), ...req.body};
+    avengers = [...avengers, avenger];
+    res.status(201).json(avengers);
+});
+
 server.use(cors);
 server.use(bodyParser.json());
 
