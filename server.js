@@ -169,6 +169,22 @@ server.post('/avengers', (req, res)=> {
     res.status(201).json(avengers);
 });
 
+server.put('/avengers/:id', (req, res)=> {
+    const {id} = req.params;
+    let avengerIndex = avengers.findIndex(avenger=> avenger.id == id);
+    if (avengerIndex >= 0) {
+        avengers[avengerIndex] = {...avengers[avengerIndex], ...req.body};
+        res.status(200).json(avengers);
+    } else {
+        res.status(404).json({message: `The avenger with id ${id} does not exist`});
+    }
+});
+
+server.delete('/avengers/:id', (req, res)=> {
+    avengers = avengers.filter(avenger=> avenger.id != req.params.id);
+    res.status(200).json(avengers);
+});
+
 server.use(cors);
 server.use(bodyParser.json());
 
