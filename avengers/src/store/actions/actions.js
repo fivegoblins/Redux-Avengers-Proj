@@ -76,4 +76,4 @@ export const updateAvenger = avenger=> dispatch=> {
         .catch(err=> {
             dispatch({type: UPDATE_AVENGER_FAILURE, payload: err});
         })
-}
+};

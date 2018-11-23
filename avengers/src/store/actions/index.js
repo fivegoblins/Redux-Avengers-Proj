@@ -7,6 +7,19 @@ export {
     ADD_AVENGER_COMPLETE,
     ADD_AVENGER_FAILURE,
 
+    DELETE_AVENGER_START,
+    DELETE_AVENGER_COMPLETE,
+    DELETE_AVENGER_FAILURE,
+
+    UPDATE_AVENGER_START,
+    UPDATE_AVENGER_COMPLETE,
+    UPDATE_AVENGER_FAILURE,
+
+    SET_UPDATE_AVENGER,
+
     getAvengers,
-    addNewAvenger
+    addNewAvenger,
+    deleteAvenger,
+    setUpdateAvenger,
+    updateAvenger,
 } from './actions';
