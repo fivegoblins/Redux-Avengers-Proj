@@ -22,4 +22,11 @@ function AvengersList(props) {
     );
 };
 
+AvengersList.propTypes = {
+    avengersList: PropTypes.array,
+    history: PropTypes.shape({
+        push: PropTypes.func
+    })
+};
+
 export default AvengersList;
