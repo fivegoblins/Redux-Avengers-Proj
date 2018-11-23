@@ -8,6 +8,17 @@ export const ADD_AVENGER_START = 'ADD_AVENGER_START';
 export const ADD_AVENGER_COMPLETE = 'ADD_AVENGER_COMPLETE';
 export const ADD_AVENGER_FAILURE = 'ADD_AVENGER_FAILURE';
 
+export const DELETE_AVENGER_START = 'DELETE_AVENGER_START';
+export const DELETE_AVENGER_COMPLETE = 'DELETE_AVENGER_COMPLETE';
+export const DELETE_AVENGER_FAILURE = 'DELETE_AVENGER_FAILURE';
+
+export const UPDATE_AVENGER_START = 'UPDATE_AVENGER_START';
+export const UPDATE_AVENGER_COMPLETE = 'UPDATE_AVENGER_COMPLETE';
+export const UPDATE_AVENGER_FAILURE = 'UPDATE_AVENGER_FAILURE';
+
+export const SET_UPDATE_AVENGER = 'SET_UPDATE_AVENGER';
+
+
 export const getAvengers = ()=> {
     dispatch({type: AVENGERS_FETCH_START});
     const promise = axios.get('http://localhost:9000/avengers');
@@ -33,3 +44,36 @@ export const addAvenger = ()=> {
             dispatch({type: ADD_AVENGER_FAILURE, payload: err});
         });
 };
+
+export const deleteAvenger = avengerId=> dispatch=> {
+    dispatch({type: DELETE_AVENGER_START});
+    const promise = axios.delete(`http://localhost:9000/avengers/${avengerId}`);
+
+    promise
+        .then(response=> {
+            dispatch({type: DELETE_AVENGER_COMPLETE, payload: response.data});
+        })
+        .catch(err=> {
+            dispatch({type: DELETE_AVENGER_FAILURE, payload: err});
+        })
+};
+
+export const setUpdateAvenger = id=> {
+    return {
+        type: SET_UPDATE_AVENGER,
+        payload: id
+    }
+};
+
+export const updateAvenger = avenger=> dispatch=> {
+    dispatch({type: UPDATE_AVENGER_START});
+    const promise = axios.put(`http://localhost:9000/avengers/${avenger.id}`, avenger);
+
+    promise
+        .then(response=> {
+            dispatch({type: UPDATE_AVENGER_COMPLETE, payload: response.data});
+        })
+        .catch(err=> {
+            dispatch({type: UPDATE_AVENGER_FAILURE, payload: err});
+        })
+}
