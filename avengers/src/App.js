@@ -13,7 +13,7 @@ class App extends Component {
   render() {
     return (
       <div className="App">
-        <ul className='navbar'>
+        <ul className='navBar'>
           <li>
             <NavLink exact to='/' activeClassName='activeNavBtn'>
               Home
