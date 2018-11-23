@@ -1,25 +1,39 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
+import {Route, NavLink, withRouter} from 'react-router-dom';
+
+import HomeView from './views/HomeView';
+import AvengerListView from './views/AvengerListView';
+import AvengerView from './views/AvengerView';
+import AvengerFormView from './views/AvengerFormView';
+
+
 import './App.css';
 
 class App extends Component {
   render() {
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <ul className='navbar'>
+          <li>
+            <NavLink exact to='/' activeClassName='activeNavBtn'>
+              Home
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to='/avengers' activeClassName='activeNavBtn'>
+              Avengers
+            </NavLink>
+          </li>
+          <li>
+           <NavLink to='/avenger-form' activeClassName='activeNavBtn'>
+              Add New
+            </NavLink>
+          </li>
+        </ul>
+        <Route exact path='/' component={HomeView}/>
+        <Route exact path='/avengers' component={AvengerListView}/>
+        <Route path='/avengers/:avengerId' component={AvengerView}/>
+        <Route path='/avenger-form' component={AvengerFormView}/>
       </div>
     );
   }
